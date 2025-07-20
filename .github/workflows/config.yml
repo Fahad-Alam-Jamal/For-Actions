@@ -22,5 +22,5 @@ jobs:
       - name: Run Multiple Line
         run: |
           echo line 1
-          echo line 2
+          echo line ok
           echo Project Deployed
