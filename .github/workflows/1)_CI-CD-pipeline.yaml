@@ -1,22 +1,19 @@
-name: Creatig-CI-CD-pipeline
+name: Creating-CI-CD-pipeline
 on:
   push:
-    branches:
-      - master
-  
+    branches: master
   pull_request:
-    branches:
-      - master
-  
+    branches: master
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     steps: 
       - uses: actions/checkout@v4
-      - name: Run a single line
+      
+      - name: Run a Single line
         run: echo hello world
 
       - name: Run Multiple Line
