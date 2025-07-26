@@ -1,0 +1,30 @@
+name: Creating Two Jobs
+
+on:
+  push:
+    branches: [master]
+  pull_request: 
+    branches: [master]
+  workflow_dispatch:
+
+# Here jobs will run in parallel
+jobs:
+  aa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone repo
+        uses: actions/checkout@v4.2.2
+
+      - name: bash commands
+        run: echo Hello, how are you!
+
+  bb:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone repo
+        uses: actions/checkout@v4.2.2
+
+      - name: bash commands
+        run: echo Hello, I am fine!
+
+    
