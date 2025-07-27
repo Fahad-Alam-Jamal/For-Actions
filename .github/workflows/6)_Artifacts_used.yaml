@@ -1,0 +1,44 @@
+# Artifacts are used  to share files between jobs, store build/test outputs and log keeping
+name: Upload and Download Artifact Example
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  Create-Artifact:
+    name: Create and Upload Artifact
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Create a file to upload
+        run: |
+          mkdir -p my-artifacts
+          echo "This is my file content" > my-artifacts/example.txt
+
+      - name: Upload the Artifact
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: The_Artifact
+          path: my-artifacts/
+
+  Use-Artifact:
+    name: Download and Use Artifact
+    needs: Create-Artifact  # Wait for the previous job to finish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download the artifact
+        uses: actions/download-artifact@v4.3
+        with:
+          name: The_Artifact
+          path: downloaded-artifacts/
+
+      - name: Read the downloaded file
+        run: |
+          echo "File contents: "
+          cat downloaded-artifacts/example.txt
