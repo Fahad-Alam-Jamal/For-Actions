@@ -1,0 +1,26 @@
+name: Python code CI-CD
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: 
+
+jobs:
+  Python-Script-executer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5.6.0
+        with:
+          check-latest: yes
+
+      - name: Install Python Dependency
+        run: pip install pandas
+
+      - name: Run Python Script
+        run: python pyscripts/add.py
+        
+      
