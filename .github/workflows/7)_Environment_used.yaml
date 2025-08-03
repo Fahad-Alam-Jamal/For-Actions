@@ -1,0 +1,23 @@
+name: Using Environment
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  Use-Env:
+    runs-on: ubuntu-latest
+    environment:
+      name: Dev-Enviro
+    steps: 
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2
+      
+      - name: Display Env Purpose
+        run: echo ${{ var.ENV_PURPOSE }}
+
+      - name: Run Multiple Line
+        run: |
+          echo line 1
+          echo line ok
+          echo Done
